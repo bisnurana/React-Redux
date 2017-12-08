@@ -1,11 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const keys = require('./config/keys');
 const router = require('./router');
 //connect to mongo database
 mongoose.connect(keys.mongoURI);
 const app = express();
+//handling cross domain request
+app.use(cors());
 // use body parser middleware
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
