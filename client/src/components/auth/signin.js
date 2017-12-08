@@ -18,7 +18,11 @@ class Signin extends Component {
   }
   renderAlert() {
     if (this.props.errMsg) {
-      console.log('hello');
+      return (
+        <div className="alert alert-warning">
+          <strong>Oops!</strong> {this.props.errMsg}
+        </div>
+      );
     }
   }
   render() {
@@ -35,9 +39,9 @@ class Signin extends Component {
     );
   }
 }
+
+Signin = reduxForm({ form: 'signin' })(Signin);
 function mapStateToProps(state) {
   return { errMsg: state.auth.err };
 }
-export default reduxForm({ form: 'signin' })(
-  connect(mapStateToProps, actions)(Signin)
-);
+export default connect(mapStateToProps, actions)(Signin);
