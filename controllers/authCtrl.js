@@ -19,7 +19,7 @@ exports.signup = function(req, res, next) {
       .send({ error: 'You must provide an email and password' });
   }
   //look for users
-  User.findOne({ email: email }).then(function(err, existingUser) {
+  User.findOne({ email: email }, function(err, existingUser) {
     if (err) {
       return next(err);
     }

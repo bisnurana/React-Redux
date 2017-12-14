@@ -5,7 +5,7 @@ const cors = require('cors');
 const keys = require('./config/keys');
 const router = require('./router');
 //connect to mongo database
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, { useMongoClient: true });
 const app = express();
 //handling cross domain request
 app.use(cors());

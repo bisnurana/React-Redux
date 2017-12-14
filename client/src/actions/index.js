@@ -15,9 +15,21 @@ export function signinUser({ email, password }, callback) {
       });
   };
 }
+export function signupUser({ email, password }, callback) {
+  return function(dispatch) {
+    axios
+      .post(`${ROOT_URL}/signup`, { email, password })
+      .then(response => {
+        dispatch({ type: AUTH_USER });
+        localStorage.setItem('token', response.data.token);
+        callback();
+      })
+      .catch(error => dispatch(authErr(error.response.data.error)));
+  };
+}
 
-export function authErr(err) {
-  return { type: AUTH_ERR, payload: err };
+export function authErr(error) {
+  return { type: AUTH_ERR, payload: error };
 }
 export function signoutUser() {
   localStorage.removeItem('token');
