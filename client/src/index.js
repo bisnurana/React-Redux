@@ -7,10 +7,17 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
+import { AUTH_USER } from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(reducers);
+//automatically authenticating user
+const token = localStorage.getItem('token');
+if (token) {
+  store.dispatch({ type: AUTH_USER });
+}
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>

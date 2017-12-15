@@ -4,6 +4,8 @@ import Header from './header';
 import Signin from './auth/signin';
 import Signout from './auth/signout';
 import Signup from './auth/signup';
+import Feature from './feature';
+import RequireAuth from './auth/require_auth';
 class App extends Component {
   render() {
     return (
@@ -14,8 +16,7 @@ class App extends Component {
           <Route path="/signin" component={Signin} />
           <Route path="/signout" component={Signout} />
           <Route path="/signup" component={Signup} />
-          <Route path="/signup" render={() => <div>Page Sign-up</div>} />
-          <Route path="/feature" render={() => <div>Features</div>} />
+          <Route path="/feature" component={RequireAuth(Feature)} />
         </Switch>
       </div>
     );

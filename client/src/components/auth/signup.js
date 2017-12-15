@@ -46,7 +46,7 @@ class Signup extends Component {
           name="confirmpassword"
           type="password"
           component={this.renderInput}
-          label="confirmPassword"
+          label="Confirm password"
         />
         {this.renderAlert()}
         <button className="btn btn-primary" action="submit">
